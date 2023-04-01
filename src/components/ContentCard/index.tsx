@@ -1,6 +1,8 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, styled, SxProps, Typography } from '@mui/material';
 import { FC } from 'react';
+import useOrientation from '../../hooks/useOrientation';
 import { Content } from '../../types/content';
+import { formatMinTwoDigits } from '../../utils';
 
 export interface ContentCardProps {
   title: Content;
@@ -8,8 +10,37 @@ export interface ContentCardProps {
   topicNumber: Content;
 }
 
-const TitleWrapper = styled('div')(() => ({
+const Wrapper = styled(Box)(({ theme }) => ({
+  padding: '16px 0',
+
+  [theme.breakpoints.up('md')]: {
+    padding: '30px 0',
+  },
+
+  [theme.breakpoints.up('lg')]: {
+    padding: '56px 0',
+  },
+}));
+
+const TitleWrapper = styled(Box)(() => ({
   display: 'inline-flex',
+}));
+
+const TopicNumber = styled(Typography)(({ theme }) => ({
+  display: 'block',
+  position: 'relative',
+  marginRight: '8px',
+
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    bottom: '6px',
+    left: 0,
+    right: 0,
+    height: 0,
+    border: '5px solid #603EBE',
+    borderRadius: '2.5px',
+  },
 }));
 
 const ContentCard: FC<ContentCardProps> = ({
@@ -17,13 +48,31 @@ const ContentCard: FC<ContentCardProps> = ({
   description,
   topicNumber,
 }) => {
+  const { isMobile } = useOrientation();
+
   return (
-    <Box>
+    <Wrapper>
       <TitleWrapper>
-        <Box>{topicNumber.text}</Box>
-        <Typography>{topicNumber.text}</Typography>
+        <TopicNumber>
+          <Typography variant="body1">
+            {formatMinTwoDigits(topicNumber.text)}
+          </Typography>
+        </TopicNumber>
+        <Typography
+          variant={isMobile ? 'subtitle2' : 'subtitle1'}
+          sx={title.style}
+        >
+          {title.text}
+        </Typography>
       </TitleWrapper>
-    </Box>
+      <Typography
+        variant={isMobile ? 'body2' : 'body1'}
+        pt="20px"
+        sx={description.style}
+      >
+        {description.text}
+      </Typography>
+    </Wrapper>
   );
 };
 

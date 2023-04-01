@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/material';
 
 export type Content = {
-  text: string;
+  text: string | number;
   style?: SxProps;
 };

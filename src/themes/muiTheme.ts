@@ -11,6 +11,7 @@ const muiTheme = createTheme({
       xl: 1536,
     },
   },
+  palette: Palette,
   typography: {
     fontFamily: [
       'Roboto',
@@ -30,6 +31,30 @@ const muiTheme = createTheme({
     h3: {
       fontSize: '50px',
       lineHeight: '59px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+    },
+    subtitle1: {
+      fontSize: '36px',
+      lineHeight: '42px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+    },
+    subtitle2: {
+      fontSize: '28px',
+      lineHeight: '33px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+    },
+    body1: {
+      fontSize: '18px',
+      lineHeight: '28px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: '15px',
+      lineHeight: '18px',
       fontStyle: 'normal',
       fontWeight: 400,
     },

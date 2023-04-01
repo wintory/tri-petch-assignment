@@ -3,11 +3,10 @@ import { FC } from 'react';
 import Home from './pages/Home';
 import Provider from './Provider';
 
-const Wrapper = styled(Box)(({ theme }) => ({
+const Wrapper = styled(Box)(() => ({
   width: '100vw',
   height: '100vh',
-  backgroundColor: theme.palette.common.white,
-  overflow: 'hidden',
+  overflowX: 'hidden',
 }));
 
 const App: FC = () => {

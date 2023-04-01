@@ -34,11 +34,11 @@ const TopicNumber = styled(Typography)(({ theme }) => ({
   ':before': {
     content: '""',
     position: 'absolute',
-    bottom: '6px',
+    bottom: '8px',
     left: 0,
     right: 0,
     height: 0,
-    border: '5px solid #603EBE',
+    border: '3px solid #603EBE',
     borderRadius: '2.5px',
   },
 }));
@@ -51,7 +51,7 @@ const ContentCard: FC<ContentCardProps> = ({
   const { isMobile } = useOrientation();
 
   return (
-    <Wrapper>
+    <Wrapper className="content-card">
       <TitleWrapper>
         <TopicNumber>
           <Typography variant="body1">

@@ -26,7 +26,7 @@ const TitleWrapper = styled(Box)(() => ({
   display: 'inline-flex',
 }));
 
-const TopicNumber = styled(Typography)(() => ({
+const TopicNumber = styled(Typography)(({ theme }) => ({
   display: 'block',
   position: 'relative',
   marginRight: '8px',
@@ -38,8 +38,15 @@ const TopicNumber = styled(Typography)(() => ({
     left: 0,
     right: 0,
     height: 0,
-    border: '3px solid #603EBE',
+    border: '2px solid #603EBE',
     borderRadius: '2.5px',
+  },
+
+  [theme.breakpoints.up('md')]: {
+    ':before': {
+      bottom: '4px',
+      border: '3px solid #603EBE',
+    },
   },
 }));
 
@@ -54,7 +61,7 @@ const ContentCard: FC<ContentCardProps> = ({
     <Wrapper className="content-card">
       <TitleWrapper>
         <TopicNumber className="topic">
-          <Typography variant="body1">
+          <Typography variant={isMobile ? 'h6' : 'body1'}>
             {formatMinTwoDigits(topicNumber.text)}
           </Typography>
         </TopicNumber>

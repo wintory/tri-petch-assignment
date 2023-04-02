@@ -2,6 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 import { FC } from 'react';
 import ContentCard from '../../components/ContentCard';
 import useOrientation from '../../hooks/useOrientation';
+import Carousel from 'react-material-ui-carousel';
 
 type BackgroundType = 'primary' | 'secondary';
 
@@ -64,10 +65,10 @@ const ItemWrapper = styled(Box)<{ type: BackgroundType }>(({ type }) => ({
   },
 }));
 
-const ContentBox = styled(Box)(({ theme }) => ({
+const ContentBox = styled(Box)(() => ({
   ':before': {
     content: '""',
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: '#F5F4F9',
     position: 'absolute',
     height: '100%',
     width: '10000px',
@@ -75,6 +76,8 @@ const ContentBox = styled(Box)(({ theme }) => ({
     zIndex: '-1',
   },
 }));
+
+const ContentCarousel = styled(Carousel)(() => ({}));
 
 const ContentSection: FC<ContentBoxProps> = ({
   title,
@@ -85,24 +88,52 @@ const ContentSection: FC<ContentBoxProps> = ({
 
   return (
     <TitleBox type={type}>
-      <Typography variant={isMobile ? 'h3' : 'h1'} color="#E7E7E7">
+      <Typography
+        variant={isMobile ? 'h3' : 'h1'}
+        color="#E7E7E7"
+        display={isMobile ? 'none' : 'initial'}
+      >
         {title}
       </Typography>
-      <ItemWrapper type={type}>
-        {data.map(({ title, description }, index) => (
-          <Box position="relative">
-            <ContentBox className="content-box">
-              <ContentCard
-                title={{ text: title, style: { color: '#C2C2C2' } }}
-                description={{ text: description }}
-                topicNumber={{
-                  text: index + 1,
-                }}
-              />
-            </ContentBox>
-          </Box>
-        ))}
-      </ItemWrapper>
+      {isMobile ? (
+        <ContentCarousel
+          animation="slide"
+          autoPlay={false}
+          indicatorIconButtonProps={{
+            style: {},
+          }}
+        >
+          {data.map(({ title, description }, index) => (
+            <Box position="relative">
+              <ContentBox className="content-box">
+                <ContentCard
+                  title={{ text: title, style: { color: '#C2C2C2' } }}
+                  description={{ text: description }}
+                  topicNumber={{
+                    text: index + 1,
+                  }}
+                />
+              </ContentBox>
+            </Box>
+          ))}
+        </ContentCarousel>
+      ) : (
+        <ItemWrapper type={type}>
+          {data.map(({ title, description }, index) => (
+            <Box position="relative">
+              <ContentBox className="content-box">
+                <ContentCard
+                  title={{ text: title, style: { color: '#C2C2C2' } }}
+                  description={{ text: description }}
+                  topicNumber={{
+                    text: index + 1,
+                  }}
+                />
+              </ContentBox>
+            </Box>
+          ))}
+        </ItemWrapper>
+      )}
     </TitleBox>
   );
 };

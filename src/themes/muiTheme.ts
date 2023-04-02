@@ -33,6 +33,11 @@ const muiTheme = createTheme({
       fontStyle: 'normal',
       fontWeight: 400,
     },
+    h6: {
+      fontSize: '14px',
+      fontStyle: 'normal',
+      fontWeight: 400,
+    },
     subtitle1: {
       fontSize: '36px',
       lineHeight: '42px',

@@ -2,6 +2,9 @@
 
 this project developed for the Tri-Petch interview assignment.
 
+## Demo
+https://wintory.github.io/tri-petch-assignment/
+
 ## Getting Started
 
 ### Prerequisites

@@ -11,7 +11,7 @@ export interface ContentCardProps {
 }
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  padding: '16px 0',
+  padding: '16px 18px',
 
   [theme.breakpoints.up('md')]: {
     padding: '30px 0',

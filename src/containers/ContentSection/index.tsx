@@ -18,14 +18,16 @@ export interface ContentBoxProps {
 export const TitleBox = styled(Box)<{ type?: BackgroundType }>(
   ({ theme, type }) => ({
     width: '100%',
-    paddingTop: '18px',
     position: 'relative',
+    background: 'linear-gradient(180deg, #FFFFFF 80%, #F5F4F9 20%)',
 
     [theme.breakpoints.up('md')]: {
+      background: 'transparent',
       paddingTop: type === 'primary' ? '81px' : '51px',
     },
 
     [theme.breakpoints.up('lg')]: {
+      background: 'transparent',
       paddingTop: type === 'primary' ? '24px' : '80px',
     },
 
@@ -98,9 +100,24 @@ const ContentSection: FC<ContentBoxProps> = ({
       {isMobile ? (
         <ContentCarousel
           animation="slide"
-          autoPlay={false}
+          autoPlay
+          sx={{ backgroundColor: '#F5F4F9' }}
+          stopAutoPlayOnHover
+          indicatorContainerProps={{
+            style: {
+              padding: '16px 0',
+              margin: 0,
+            },
+          }}
+          activeIndicatorIconButtonProps={{
+            style: {
+              color: '#603EBE',
+            },
+          }}
           indicatorIconButtonProps={{
-            style: {},
+            style: {
+              color: '#D8D8D8',
+            },
           }}
         >
           {data.map(({ title, description }, index) => (

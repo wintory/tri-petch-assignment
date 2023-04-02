@@ -10,7 +10,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
   maxWidth: '1630px',
   margin: 'auto',
   boxSizing: 'border-box',
-  padding: '0 18px',
+  padding: 0,
 
   [theme.breakpoints.up('md')]: {
     padding: '0 32px',
@@ -44,6 +44,11 @@ const Image = styled('img')(({ theme }) => ({
   width: '100%',
   height: '100%',
 
+  [theme.breakpoints.down('md')]: {
+    position: 'relative',
+    maxHeight: '400px',
+  },
+
   [theme.breakpoints.up('md')]: {
     position: 'absolute',
     top: '24px',
@@ -62,7 +67,7 @@ const Image = styled('img')(({ theme }) => ({
     position: 'absolute',
     maxWidth: 'auto',
     top: '24px',
-    right: '200px',
+    right: '100px',
 
     '&.right-image': {
       height: 'auto',
@@ -84,11 +89,18 @@ const Home: FC = () => {
           variant={isMobile ? 'h3' : 'h1'}
           color="#E7E7E7"
           display={isMobile ? 'initial' : 'none'}
+          paddingX={isMobile ? '18px' : 0}
         >
           {AthletsContent.title}
         </Typography>
         <TitleBox>
-          <Image src={FootballPlayerImage} alt="football-player" />
+          <Box
+            display="flex"
+            justifyContent="center"
+            paddingX={isMobile ? '50px' : 0}
+          >
+            <Image src={FootballPlayerImage} alt="football-player" />
+          </Box>
         </TitleBox>
         <ContentSection {...AthletsContent} />
       </Content>
@@ -96,13 +108,17 @@ const Home: FC = () => {
         <Typography
           variant={isMobile ? 'h3' : 'h1'}
           color="#E7E7E7"
+          pt="18px"
           display={isMobile ? 'initial' : 'none'}
+          paddingX={isMobile ? '18px' : 0}
         >
           {PlayerContent.title}
         </Typography>
         {isMobile && (
           <TitleBox>
-            <Image src={BasketballPlayerImage} alt="basketball-player" />
+            <Box display="flex" justifyContent="center" paddingX="50px">
+              <Image src={BasketballPlayerImage} alt="basketball-player" />
+            </Box>
           </TitleBox>
         )}
         <ContentSection {...PlayerContent} type="secondary" />

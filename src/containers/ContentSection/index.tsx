@@ -99,10 +99,14 @@ const ContentSection: FC<ContentBoxProps> = ({
       </Typography>
       {isMobile ? (
         <ContentCarousel
-          animation="slide"
+          animation="fade"
+          swipe
+          interval={6000}
+          duration={600}
           autoPlay
-          sx={{ backgroundColor: '#F5F4F9' }}
           stopAutoPlayOnHover
+          navButtonsAlwaysInvisible
+          sx={{ backgroundColor: '#F5F4F9' }}
           indicatorContainerProps={{
             style: {
               padding: '16px 0',

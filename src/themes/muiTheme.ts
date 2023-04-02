@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material';
-import { Palette } from '../constants/palette';
 
 const muiTheme = createTheme({
   breakpoints: {

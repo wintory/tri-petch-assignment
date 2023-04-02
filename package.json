@@ -2,6 +2,7 @@
   "name": "my-vue-app",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://wintory.github.io/tri-petch-assignment",
   "type": "module",
   "scripts": {
     "dev": "vite",

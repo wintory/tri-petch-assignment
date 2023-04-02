@@ -29,4 +29,6 @@ body {
   width: 100vw;
   height: 100vh;
   color: #000000;
+
+  -webkit-overflow-scrolling: touch;
 }

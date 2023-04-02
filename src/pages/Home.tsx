@@ -24,7 +24,11 @@ const Content = styled(Box)(({ theme }) => ({
   gridTemplateColumns: '1fr',
 
   [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: '1fr 2fr',
+    gridTemplateColumns: '60% auto',
+
+    ':first-child': {
+      gridTemplateColumns: '40% auto',
+    },
   },
 
   [theme.breakpoints.up('lg')]: {
@@ -32,10 +36,37 @@ const Content = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Image = styled('img')(() => ({
+const Image = styled('img')(({ theme }) => ({
   position: 'absolute',
   width: '100%',
   height: '100%',
+
+  [theme.breakpoints.up('md')]: {
+    top: '24px',
+    width: '500px',
+    right: 0,
+
+    '&.right-image': {
+      height: 'auto',
+      minWidth: '690px',
+      right: 0,
+      left: '-100px',
+    },
+  },
+
+  [theme.breakpoints.up('lg')]: {
+    top: '24px',
+    maxWidth: '678px',
+    right: '200px',
+
+    '&.right-image': {
+      height: 'auto',
+      minWidth: '830px',
+      top: 0,
+      right: 0,
+      left: '-100px',
+    },
+  },
 }));
 
 const Home: FC = () => {
@@ -48,9 +79,15 @@ const Home: FC = () => {
           <Image src={FootballPlayerImage} alt="football-player" />
         </TitleBox>
         <ContentSection {...AthletsContent} />
+      </Content>
+      <Content>
         <ContentSection {...PlayerContent} type="secondary" />
         <TitleBox className={isMobile ? 'hidden' : ''}>
-          <Image src={BasketballPlayerImage} alt="basketball-player" />
+          <Image
+            className="right-image"
+            src={BasketballPlayerImage}
+            alt="basketball-player"
+          />
         </TitleBox>
       </Content>
     </Wrapper>

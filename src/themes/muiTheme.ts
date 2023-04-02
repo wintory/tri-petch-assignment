@@ -11,7 +11,6 @@ const muiTheme = createTheme({
       xl: 1536,
     },
   },
-  palette: Palette,
   typography: {
     fontFamily: [
       'Roboto',

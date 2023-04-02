@@ -1,4 +1,4 @@
-import { Box, styled, SxProps, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import { FC } from 'react';
 import useOrientation from '../../hooks/useOrientation';
 import { Content } from '../../types/content';
@@ -26,7 +26,7 @@ const TitleWrapper = styled(Box)(() => ({
   display: 'inline-flex',
 }));
 
-const TopicNumber = styled(Typography)(({ theme }) => ({
+const TopicNumber = styled(Typography)(() => ({
   display: 'block',
   position: 'relative',
   marginRight: '8px',
@@ -53,7 +53,7 @@ const ContentCard: FC<ContentCardProps> = ({
   return (
     <Wrapper className="content-card">
       <TitleWrapper>
-        <TopicNumber>
+        <TopicNumber className="topic">
           <Typography variant="body1">
             {formatMinTwoDigits(topicNumber.text)}
           </Typography>

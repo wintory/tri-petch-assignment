@@ -1,15 +1,17 @@
 import { Box, styled, Typography } from '@mui/material';
 import { FC } from 'react';
 import ContentCard from '../components/ContentCard';
-import { AthletsContent } from '../constants/mockData';
+import { AthletsContent, PlayerContent } from '../constants/mockData';
 import { useOrientation } from '../hooks/useOrientation';
+import FootballPlayerImage from '../assets/images/football-player.svg';
+import BasketballPlayerImage from '../assets/images/basketball-player.svg';
+import ContentSection, { TitleBox } from '../containers/ContentSection';
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  height: '100%',
   maxWidth: '1630px',
   margin: 'auto',
+  boxSizing: 'border-box',
   padding: '0 18px',
-  overflowY: 'auto',
 
   [theme.breakpoints.up('md')]: {
     padding: '0 32px',
@@ -30,48 +32,25 @@ const Content = styled(Box)(({ theme }) => ({
   },
 }));
 
-const TitleBox = styled(Box)(({ theme }) => ({
+const Image = styled('img')(() => ({
+  position: 'absolute',
   width: '100%',
-  paddingTop: '18px',
-
-  [theme.breakpoints.up('md')]: {
-    paddingTop: '81px',
-  },
-
-  [theme.breakpoints.up('lg')]: {
-    paddingTop: '24px',
-  },
-
-  '&.hidden': {
-    display: 'none',
-  },
+  height: '100%',
 }));
 
 const Home: FC = () => {
-  const { isDesktop, isMobile, isTablet } = useOrientation();
+  const { isMobile } = useOrientation();
 
   return (
     <Wrapper>
       <Content>
         <TitleBox className={isMobile ? 'hidden' : ''}>
-          {/* <Typography variant="h1">ATHLETS</Typography> */}
+          <Image src={FootballPlayerImage} alt="football-player" />
         </TitleBox>
-        {AthletsContent.map(({ title = '', data = [] }) => (
-          <TitleBox>
-            <Typography variant={isMobile ? 'h3' : 'h1'} color="primary">
-              {title}
-            </Typography>
-            {data.map(({ title, description }, index) => (
-              <ContentCard
-                title={{ text: title }}
-                description={{ text: description }}
-                topicNumber={{ text: index + 1 }}
-              />
-            ))}
-          </TitleBox>
-        ))}
+        <ContentSection {...AthletsContent} />
+        <ContentSection {...PlayerContent} type="secondary" />
         <TitleBox className={isMobile ? 'hidden' : ''}>
-          {/* <Typography variant="h1">ATHLETS</Typography> */}
+          <Image src={BasketballPlayerImage} alt="basketball-player" />
         </TitleBox>
       </Content>
     </Wrapper>
